@@ -25,6 +25,7 @@ RUN pnpm --filter api --prod deploy /prod/api
 FROM base AS runtime
 WORKDIR /prod/api
 COPY --from=build /prod/api .
+COPY --from=build /app/apps/api/dist ./dist
 
 EXPOSE 4567
 CMD ["node", "dist/main.js"]
